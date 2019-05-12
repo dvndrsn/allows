@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
+requirements = []
 
 setup_requirements = ['pytest-runner', ]
 
@@ -34,11 +34,6 @@ setup(
         'Programming Language :: Python :: 3.7',
     ],
     description="Easier mock configuration and assertions in Python",
-    entry_points={
-        'console_scripts': [
-            'allows=allows.cli:main',
-        ],
-    },
     install_requires=requirements,
     license="MIT license",
     long_description=readme + '\n\n' + history,

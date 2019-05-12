@@ -1,0 +1,2 @@
+class AllowsException(Exception):
+    pass
