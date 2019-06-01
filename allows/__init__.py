@@ -9,7 +9,7 @@ __all__ = [
     "allow",
     "return_value",
     "raise_exception",
-    "recieve_method",
+    "receive_method",
     "be_called_with",
     "have_effect",
 ]
@@ -24,8 +24,8 @@ from .factory import (  # noqa: F401
     return_,
     raise_exception,
     raise_,
-    recieve_method,
-    recieve,
+    receive_method,
+    receive,
     be_called_with,
     have_effect,
 )

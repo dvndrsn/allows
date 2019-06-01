@@ -13,7 +13,7 @@ from allows import (
     allow,
     be_called_with,
     raise_exception,
-    recieve_method,
+    receive_method,
     return_value,
     AllowsException,
 )
@@ -23,14 +23,14 @@ class TestSideEffectBuilderGrammarAllowsReturningAValue:
     def test_none_is_returned_by_default(self):
         mock_subject = Mock()
 
-        allow(mock_subject).to(recieve_method("foo"))
+        allow(mock_subject).to(receive_method("foo"))
 
         assert mock_subject.foo() is None
 
     def test_returns_the_specified_return_value(self):
         mock_subject = Mock()
 
-        allow(mock_subject).to(recieve_method("foo").and_return_value("bar"))
+        allow(mock_subject).to(receive_method("foo").and_return_value("bar"))
 
         assert mock_subject.foo() == "bar"
 
@@ -39,7 +39,7 @@ class TestSideEffectBuilderGrammarAllowsReturningAValue:
     ):
         mock_subject = Mock()
 
-        allow(mock_subject).to(recieve_method("foo").and_return(1, 2, 3))
+        allow(mock_subject).to(receive_method("foo").and_return(1, 2, 3))
 
         assert mock_subject.foo() == 1
         assert mock_subject.foo() == 2
@@ -51,14 +51,14 @@ class TestSideEffectBuilderGrammarAllowsReturningAValue:
         mock_subject = Mock()
 
         with pytest.raises(AllowsException):
-            allow(mock_subject).to(recieve_method("foo").on_method("foo"))
+            allow(mock_subject).to(receive_method("foo").on_method("foo"))
 
     def test_setting_return_value_twice_raises_error(self):
         mock_subject = Mock()
 
         with pytest.raises(AllowsException):
             allow(mock_subject).to(
-                recieve_method("foo").and_return_value("bar").and_return_value("bar2")
+                receive_method("foo").and_return_value("bar").and_return_value("bar2")
             )
 
     def test_can_start_side_effect_grammar_with_return_value(self):
@@ -74,7 +74,7 @@ class TestSideEffectBuilderGrammarAllowsRaisingAnError:
         mock_subject = Mock()
 
         allow(mock_subject).to(
-            recieve_method("bar").and_raise(ValueError("Stuff happened"))
+            receive_method("bar").and_raise(ValueError("Stuff happened"))
         )
 
         with pytest.raises(ValueError, match="Stuff happened"):
@@ -84,7 +84,7 @@ class TestSideEffectBuilderGrammarAllowsRaisingAnError:
         mock_subject = Mock()
 
         allow(mock_subject).to(
-            recieve_method("bar").and_raise(ValueError("Stuff happened"))
+            receive_method("bar").and_raise(ValueError("Stuff happened"))
         )
 
         with pytest.raises(ValueError, match="Stuff happened"):
@@ -113,7 +113,7 @@ class TestAllowsGrammar:
         mock_subject = Mock()
 
         allow(mock_subject).to(
-            recieve_method("process")
+            receive_method("process")
             .called_with("stuff", thing="hi")
             .and_return_value("things")
         )
@@ -125,7 +125,7 @@ class TestAllowsGrammar:
         mock_subject = Mock()
 
         allow(mock_subject).to(
-            recieve_method("process")
+            receive_method("process")
             .called_with("badstuff", thing="yo")
             .and_raise(ValueError("Bad Stuff"))
         )
@@ -137,7 +137,7 @@ class TestAllowsGrammar:
         mock_subject = Mock()
 
         allow(mock_subject).to(
-            recieve_method("process")
+            receive_method("process")
             .called_with("stuff", thing="hey")
             .with_effect(lambda *args, **kwargs: 2 + 3)
         )

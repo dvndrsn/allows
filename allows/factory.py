@@ -9,7 +9,7 @@ __all__ = (
     "allow",
     "return_value",
     "raise_exception",
-    "recieve_method",
+    "receive_method",
     "be_called_with",
     "have_effect",
 )
@@ -71,14 +71,14 @@ def raise_(exception: Exception) -> SideEffectBuilderGrammar:
     return raise_exception(exception)
 
 
-def recieve_method(name: str) -> SideEffectBuilderGrammar:
+def receive_method(name: str) -> SideEffectBuilderGrammar:
     """
     Start building a side effect on a named method of a Mock.
 
     .. code:: python
 
         my_mock = Mock()
-        allow(my_mock).to(recieve_method('foo').and_return('bar))
+        allow(my_mock).to(receive_method('foo').and_return('bar))
 
         assert my_mock.foo() == 'bar'
     """
@@ -86,11 +86,11 @@ def recieve_method(name: str) -> SideEffectBuilderGrammar:
     return SideEffectBuilderGrammar(method_name=name)
 
 
-def recieve(method_name: str) -> SideEffectBuilderGrammar:
+def receive(method_name: str) -> SideEffectBuilderGrammar:
     """
-    Alias for ``recieve_method``.
+    Alias for ``receive_method``.
     """
-    return recieve_method(method_name)
+    return receive_method(method_name)
 
 
 def be_called_with(*args, **kwargs) -> SideEffectBuilderGrammar:

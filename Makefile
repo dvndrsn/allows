@@ -84,6 +84,9 @@ servedocs: ## compile the docs watching for changes
 release: dist ## package and upload a release
 	twine upload dist/*
 
+test-release: dist ## package and upload a release to the test pypi
+	twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
 dist: clean ## builds source and wheel package
 	python setup.py sdist
 	python setup.py bdist_wheel

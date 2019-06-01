@@ -24,7 +24,7 @@ class MockExtensionGrammar:
 class SideEffectBuilderGrammar:
     """
     SideEffectBuilderGrammar is initiated by the ``return_value``, ``raise_exception``,
-    ``recieve_method``, ``be_called_with``, ``have_effect`` factory methods.
+    ``receive_method``, ``be_called_with``, ``have_effect`` factory methods.
 
     The grammar is chainable, but a side effect can have only one effect (return,
     exception, effect) per grammar expression. However, side effects will automatically

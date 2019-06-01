@@ -3,7 +3,7 @@ allows package
 
 .. autofunction:: allows.allow
 
-.. autofunction:: allows.recieve_method
+.. autofunction:: allows.receive_method
 
 .. autofunction:: allows.return_value
 

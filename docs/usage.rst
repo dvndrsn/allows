@@ -6,16 +6,16 @@ To use Allows in a project::
 
     from unittest.mock import Mock
 
-    from allows import allow, recieve_method
+    from allows import allow, receive_method
 
     my_mock = Mock()
     allow(my_mock).to(
-        recieve_method('spam')
+        receive_method('spam')
         .called_with(eggs='foo')
         .and_return_value('bar')
     )
     allow(my_mock).to(
-        recieve_method('spam')
+        receive_method('spam')
         .called_with(eggs='no thanks')
         .and_return_value('ok')
     )
