@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `allows` package."""
-
-from unittest.mock import Mock
+try:
+    from unittest.mock import Mock
+except ImportError:
+    from mock import Mock
 
 import pytest
 
@@ -17,7 +19,7 @@ from allows import (
 )
 
 
-class TestGrammarAllowsReturningAValue:
+class TestSideEffectBuilderGrammarAllowsReturningAValue:
     def test_none_is_returned_by_default(self):
         mock_subject = Mock()
 
@@ -59,8 +61,15 @@ class TestGrammarAllowsReturningAValue:
                 recieve_method("foo").and_return_value("bar").and_return_value("bar2")
             )
 
+    def test_can_start_side_effect_grammar_with_return_value(self):
+        mock_subject = Mock()
 
-class TestGrammarAllowsRaisingAnError:
+        allow(mock_subject).to(return_value(1).on_method("bar"))
+
+        assert mock_subject.bar() == 1
+
+
+class TestSideEffectBuilderGrammarAllowsRaisingAnError:
     def test_raising_an_error(self):
         mock_subject = Mock()
 
@@ -80,6 +89,23 @@ class TestGrammarAllowsRaisingAnError:
 
         with pytest.raises(ValueError, match="Stuff happened"):
             mock_subject.bar("stuff", "things")
+
+    def test_can_start_side_effect_grammar_with_raised_exception(self):
+        mock_subject = Mock()
+
+        allow(mock_subject).to(raise_exception(ValueError))
+
+        with pytest.raises(ValueError):
+            mock_subject()
+
+
+class TestSideEffectBuilderGrammarAllowsSettingCallArgs:
+    def test_called_with(self):
+        mock_subject = Mock()
+
+        allow(mock_subject).to(be_called_with("thing", eggs="spam").and_return("bar"))
+
+        assert mock_subject("thing", eggs="spam") == "bar"
 
 
 class TestAllowsGrammar:

@@ -20,7 +20,7 @@ Allows
 
 
 
-Easier mock configuration and assertions in Python using Rspec-like grammar!
+Easier mock configuration and assertions in Python using R-spec_-like grammar!
 
 .. code:: python
 
@@ -30,6 +30,9 @@ Easier mock configuration and assertions in Python using Rspec-like grammar!
     assert my_mock.wave() == 'hi'
     assert my_mock.wave('see ya') == 'bye'
 
+This library is built to wrap and configure Mock, MagicMock and other objects from the built in `unittest.mock`_ available in Python 3.3+.
+
+.. _unittest.mock: https://docs.python.org/3/library/unittest.mock.html
 
 * Free software: MIT license
 * Documentation: https://allows.readthedocs.io.
@@ -39,7 +42,7 @@ Features
 --------
 
 * R-spec_-like grammar for specifing Mock behavior
-* Compatible with all Python standard library Mock (MagicMock, Patch, etc.)
+* Compatible with all Python standard library `unittest.mock`_ Mock (MagicMock, Patch, etc.)
 * Stand alone SideEffect builder to model and combine complex side effects
 
 .. _R-spec: https://rspec.info/documentation/3.8/rspec-mocks/

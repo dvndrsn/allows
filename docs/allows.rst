@@ -29,7 +29,7 @@ allows.grammar module
     :members:
 
 allows.side_effect module
---------------------
+-------------------------
 
 .. automodule:: allows.side_effect
     :members:

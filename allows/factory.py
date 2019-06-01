@@ -1,5 +1,5 @@
 from typing import Any, Callable
-from unittest.mock import Mock, call
+from unittest.mock import Mock
 
 # from .models import MockExtensionGrammar, SideEffectBuilderGrammar
 from .grammar import MockExtensionGrammar, SideEffectBuilderGrammar
@@ -105,7 +105,7 @@ def be_called_with(*args, **kwargs) -> SideEffectBuilderGrammar:
         assert my_mock('spam', foo='bar') == 'eggs'
     """
     builder = SideEffectBuilder().with_call_args(*args, **kwargs)
-    return SideEffectBuilderGrammar(buidler=builder)
+    return SideEffectBuilderGrammar(builder=builder)
 
 
 def have_effect(effect: Callable) -> SideEffectBuilderGrammar:

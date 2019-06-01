@@ -1,6 +1,5 @@
-from itertools import chain, repeat
-from unittest.mock import call, Mock
-from typing import Any, Callable
+from unittest.mock import Mock
+from typing import Callable
 
 from .exception import AllowsException
 from .side_effect import SideEffectBuilder
@@ -24,9 +23,12 @@ class MockExtensionGrammar:
 
 class SideEffectBuilderGrammar:
     """
-    SideEffectBuilderGrammar is initiated by the ``return_value``, ``raise_exception``, ``recieve_method``, ``be_called_with``, ``have_effect`` factory methods.
+    SideEffectBuilderGrammar is initiated by the ``return_value``, ``raise_exception``,
+    ``recieve_method``, ``be_called_with``, ``have_effect`` factory methods.
 
-    The grammar is chainable, but a side effect can have only one effect (return, exception, effect) per grammar expression. However, side effects will automatically combine if multiple expressions are applied to the same mock/method.
+    The grammar is chainable, but a side effect can have only one effect (return,
+    exception, effect) per grammar expression. However, side effects will automatically
+    combine if multiple expressions are applied to the same mock/method.
 
     This enables grammar for building the side effect like:
 
@@ -47,7 +49,8 @@ class SideEffectBuilderGrammar:
 
     def on_method(self, method_name):
         """
-        Specify method name on the mocked object which will have the side effect applied.
+        Specify method name on the mocked object which will have the side effect
+        applied.
 
         allow(my_mock).to(return_value(5).on_method('foo'))
         assert my_mock.foo() == 5
@@ -57,7 +60,7 @@ class SideEffectBuilderGrammar:
 
     def called_with(self, *args, **kwargs):
         """
-        Specify call args that trigger the side effect. Alias ``when_called_with``
+        Specify call args that trigger the side effect. Alias ``when_called_with``.
         """
         self._builder.with_call_args(*args, **kwargs)
         return self
@@ -72,7 +75,8 @@ class SideEffectBuilderGrammar:
 
     def and_return_value(self, *return_value):
         """
-        Add a return value (or a list of return values to cycle through). Alias ``and_return``
+        Add a return value (or a list of return values to cycle through). Alias
+        ``and_return``.
         """
         self._builder.with_return_value(*return_value)
         return self
@@ -83,7 +87,7 @@ class SideEffectBuilderGrammar:
 
     def and_raise_exception(self, raised_exception):
         """
-        Raise an exception. Alias ``and_raise``
+        Raise an exception. Alias ``and_raise``.
         """
         self._builder.with_raised_exception(raised_exception)
         return self

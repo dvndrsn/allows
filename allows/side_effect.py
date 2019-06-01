@@ -1,5 +1,5 @@
 from itertools import chain, repeat
-from unittest.mock import call, Mock
+from unittest.mock import call
 from typing import Any, Callable
 
 from .exception import AllowsException
@@ -7,7 +7,8 @@ from .exception import AllowsException
 
 class SideEffectBuilder:
     """
-    Uses builder pattern to set up Callable effect and Call argument values for SideEffect objects.
+    Uses builder pattern to set up Callable effect and Call argument values for
+    SideEffect objects.
 
     Only one effect can be applied in a given builder (return, exception, effect).
     """
@@ -23,13 +24,13 @@ class SideEffectBuilder:
         self._call_args = call(*args, **kwargs)
         return self
 
-    def with_raised_exception(self, raised_exception):
+    def with_raised_exception(self, raised_exception: Exception):
         """ Raise an exception. """
 
-        def raise_(exception):
-            raise exception
+        def raise_(*args, **kwargs):
+            raise raised_exception
 
-        effect = lambda *args, **kwargs: raise_(raised_exception)
+        effect = raise_
         return self._set_effect(effect)
 
     def with_return_value(self, *return_values: Any):
@@ -46,7 +47,7 @@ class SideEffectBuilder:
         """ Add a generic effect to the side effect. """
         return self._set_effect(effect)
 
-    def _set_effect(self, effect):
+    def _set_effect(self, effect: Callable):
         if self._effect:
             raise AllowsException("Cannot set multiple effects")
 
@@ -58,9 +59,14 @@ class SideEffectBuilder:
         return SideEffect(call_args=self._call_args, effect=self._effect)
 
 
+def no_op(*args, **kwargs):
+    return
+
+
 class SideEffect:
     """
-    Callable object that can compose many side effects with corresponding arguments or default response.
+    Callable object that can compose many side effects with corresponding arguments or
+    default response.
     """
 
     def __init__(self, call_args=None, effect=None, default_effect=None):
@@ -69,7 +75,7 @@ class SideEffect:
             effect = None
         elif not call_args and not effect:
             call_args = call()
-            effect = lambda *args, **kwargs: None
+            effect = no_op
         self._calls = [call_args] if call_args else []
         self._effects = [effect] if effect and call_args else []
         self._default_effect = default_effect
