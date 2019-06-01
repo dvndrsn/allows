@@ -1,2 +1,2 @@
 class AllowsException(Exception):
-    pass
+    """Raised when invariants are violated while creating SideEffects (like multiple side effects specified)"""

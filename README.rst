@@ -20,7 +20,15 @@ Allows
 
 
 
-Easier mock configuration and assertions in Python
+Easier mock configuration and assertions in Python using Rspec-like grammar!
+
+.. code:: python
+
+    allow(my_mock).to(return_value('hi').on_method('wave'))
+    allow(my_mock).to(return_value('bye').on_method('wave').when_called_with('see ya'))
+
+    assert my_mock.wave() == 'hi'
+    assert my_mock.wave('see ya') == 'bye'
 
 
 * Free software: MIT license
@@ -30,7 +38,11 @@ Easier mock configuration and assertions in Python
 Features
 --------
 
-* TODO
+* R-spec_-like grammar for specifing Mock behavior
+* Compatible with all Python standard library Mock (MagicMock, Patch, etc.)
+* Stand alone SideEffect builder to model and combine complex side effects
+
+.. _R-spec: https://rspec.info/documentation/3.8/rspec-mocks/
 
 Credits
 -------
