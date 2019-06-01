@@ -1,18 +1,17 @@
 language: python
 python:
-- 3.6
-- 3.5
-- 3.4
-- 2.7
+    - 3.7
+    - 3.6
+    - 3.5
 install: pip install -U tox-travis
 script: tox
 deploy:
-  provider: pypi
-  distributions: sdist bdist_wheel
-  user: dvndrsn
-  password:
-    secure: YS2KcfMwc8arbB6Pmo/JiblzzOO7jI3BpotuPeULz9CtCDYe2QUDeyqqjQR9AVMDJEs5pQCuYCMY7kSvddkVWwhI24tHl/sb18/fcZw3VER32oaKSqK5sBEfbvXZKMqGE+mlzHvEMVPIrUrqBqcMMdSv0AsjfY09MgbYoJ133kDHjYQ4q+INV77M/iqth7EQxpcHgEM/COMWDowAdGV253GITZ3JeqFc3ci4clLEmUfUCrPvGJPDgYZ2sJsOgkFEtoo+fx2WdJoNVSH53e9SeD0I8wFc9uyGGg705ktu8DzQi3+REw0o8f3m8POm1rpOUvchz/7slkUT6thXJsSfmUNHwmKr7B+X3TjOPRNoIoxL2QR5FNbzVtfnECu/8gdwnukLg38JblLwTgn5TsgbtAT8CoO73nb6SAUuPrbljICpLG4CvS7qyetvG2EmTfQjDvGgXRbuIoIbluJPLZDVraOh1m62pVrRYl3Y/jmbLjJUH0Mm4/gFOIGs5fwrotVPA8srP4hTatfXLVDSN10Ye3W+N5YFqXo6h6d0sXpEAm0UOcZrG68qav4fTxrXJC7PNJLkdR620O2BdMAX9ZLcAUV2QQ+6MC2e25Oi9oeiRKgMDpX0BFpIYAtrLhnMcEhfSu9sG6CpwuvgfUa0xE1ABIET5/47KD5JKAUaVLkcE5M=
-  on:
-    tags: true
-    repo: dvndrsn/allows
-    python: 3.6
+    provider: pypi
+    distributions: sdist bdist_wheel
+    user: dvndrsn
+    password:
+        secure: YS2KcfMwc8arbB6Pmo/JiblzzOO7jI3BpotuPeULz9CtCDYe2QUDeyqqjQR9AVMDJEs5pQCuYCMY7kSvddkVWwhI24tHl/sb18/fcZw3VER32oaKSqK5sBEfbvXZKMqGE+mlzHvEMVPIrUrqBqcMMdSv0AsjfY09MgbYoJ133kDHjYQ4q+INV77M/iqth7EQxpcHgEM/COMWDowAdGV253GITZ3JeqFc3ci4clLEmUfUCrPvGJPDgYZ2sJsOgkFEtoo+fx2WdJoNVSH53e9SeD0I8wFc9uyGGg705ktu8DzQi3+REw0o8f3m8POm1rpOUvchz/7slkUT6thXJsSfmUNHwmKr7B+X3TjOPRNoIoxL2QR5FNbzVtfnECu/8gdwnukLg38JblLwTgn5TsgbtAT8CoO73nb6SAUuPrbljICpLG4CvS7qyetvG2EmTfQjDvGgXRbuIoIbluJPLZDVraOh1m62pVrRYl3Y/jmbLjJUH0Mm4/gFOIGs5fwrotVPA8srP4hTatfXLVDSN10Ye3W+N5YFqXo6h6d0sXpEAm0UOcZrG68qav4fTxrXJC7PNJLkdR620O2BdMAX9ZLcAUV2QQ+6MC2e25Oi9oeiRKgMDpX0BFpIYAtrLhnMcEhfSu9sG6CpwuvgfUa0xE1ABIET5/47KD5JKAUaVLkcE5M=
+    on:
+        tags: true
+        repo: dvndrsn/allows
+        python: 3.6
